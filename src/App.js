@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from "react";
+import moment from "moment";
+import Clock from "./components/Clock/Clock"
+import Setter from "./components/Setter/Setter"
+import View from "./components/View/View"
 
 function App() {
+  const [time, setTime] = useState(moment()
+  .format("LT")
+  .toString()
+  .toLocaleLowerCase()
+  .replace(/\s/g, ""));
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1 className="logo">keep.yourself.alive.</h1>
+        <Clock />
+        <Setter />
+        <View />
     </div>
   );
 }
