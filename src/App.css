@@ -5,7 +5,7 @@
 }
 
 body {
-  background: ghostwhite;
+  background: lightseagreen;
 }
 
 .App{
@@ -16,9 +16,12 @@ body {
   justify-items: center;
   grid-template-columns: repeat(13, 1fr);
   grid-template-rows: repeat(8, 1fr);
+  font-family: 'Hind Siliguri', sans-serif;
 }
 
 .logo {
+  font-family: 'Turret Road', cursive;
+  color: honeydew;
   grid-row: 1 / 2;
   grid-column: 6 / 9;
 }
