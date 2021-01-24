@@ -18,6 +18,14 @@ const Clock = () => {
           };
     });
 
+    let timeDigit = time.slice(0, 4);  
+    let ampm = time.slice(4, 6)
+
+    if (timeDigit.slice(1, 2) !== ":") {
+        timeDigit = time.slice(0, 5);
+        ampm = time.slice(5, 7);
+    }
+
     function tick() {
         setTime(moment()
         .format("LT")
@@ -26,14 +34,12 @@ const Clock = () => {
         .replace(/\s/g, ""));
        };
 
-       let ampm = time.slice(4, 6);
-
     return (
        
         <div className="clock">
             <div className="screen">
                 <div className="digits">
-                    {time.slice(0, 4)} 
+                    {timeDigit} 
                 </div>
                 <div className="ampm-toggle">
                     {ampm === "am" 

@@ -1,7 +1,7 @@
 import React from 'react';
-import "./view.css";
+import "./notepad.css";
 
-const View = () => {
+const Notepad = () => {
     return (
 
             <div className="view">
@@ -76,4 +76,4 @@ const View = () => {
     )
 }
 
-export default View
+export default Notepad;
