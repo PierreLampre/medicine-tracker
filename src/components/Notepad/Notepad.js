@@ -4,7 +4,7 @@ import "./notepad.css";
 const Notepad = () => {
     return (
 
-            <div className="view">
+            <div className="notepad">
                <div className="top-binding"></div>
                 <div className="paper">
                     <div className="empty-top-margin">
