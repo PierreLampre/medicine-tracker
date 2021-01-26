@@ -17,7 +17,7 @@ const Views = () => {
     function handleSetPill(name, interval) {
         setPill({
             name: name,
-            interval: interval
+            interval: parseInt(interval)
         });
     }
 
@@ -31,7 +31,7 @@ const Views = () => {
     return (
         <div className="views">
             <BrowserRouter>
-                <Setter />
+                <Setter pillBox={pillBox}/>
                 <Switch>
                     <Route exact path="/">
                         <Notepad />

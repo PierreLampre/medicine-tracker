@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import "./setter.css";
 
-const Setter = () => {
+const Setter = (props) => {
     return (
 
             <div className="setter">
@@ -12,8 +12,10 @@ const Setter = () => {
                 </Link>
                 </div>
                 <div className="pill-box">
-                    <div className="pill">Metformin</div>
-                    <div className="pill">Valsartan</div>
+                    {props.pillBox.length > 0 ? 
+                    props.pillBox.map(pill => (
+                        <div className="pill">{pill.name}</div>
+                    )) : null}
                 </div>
             </div>
 
