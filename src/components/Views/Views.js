@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Setter from "../Setter/Setter"
 import Notepad from "../Notepad/Notepad"
@@ -11,6 +11,7 @@ const Views = () => {
         name: "",
         interval: 0
     }); 
+   
     const [pillBox, setPillBox] = useState([]);
 
     function handleSetPill(name, interval) {
@@ -18,9 +19,14 @@ const Views = () => {
             name: name,
             interval: interval
         });
-        setPillBox([...pillBox, pill]);
-        console.log(pillBox);
     }
+
+    if (pill.name !== "" && pill.interval !== "0") {
+        setPillBox([...pillBox, pill])
+        setPill({name: "", interval: 0})
+    } 
+
+    useEffect(() => console.log(pillBox), [pillBox]);
 
     return (
         <div className="views">
