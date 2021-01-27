@@ -15,7 +15,12 @@ const Setter = (props) => {
                 <div className="pill-box">
                     {props.pillBox.length > 0 ? 
                     props.pillBox.map(pill => (
-                        <Pill name={pill.name} int={pill.interval} key={pill.name}/>
+                        <Pill 
+                            name={pill.name} 
+                            int={pill.interval} 
+                            key={props.pillBox.indexOf(pill)} 
+                            showkey={props.pillBox.indexOf(pill)}
+                        />
                     )) : null}
                 </div>
             </div>

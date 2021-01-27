@@ -6,3 +6,7 @@
     color: ghostwhite;
     border-radius: 16px;
 }
+
+.link {
+    text-decoration: none;
+}
