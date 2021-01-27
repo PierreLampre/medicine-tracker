@@ -34,12 +34,3 @@
     border: 2px solid orchid;
     font-size: 9px;
 }
-
-.pill {
-    padding: 3px;
-    font-size: 14px;
-    text-align: center;
-    background: coral;
-    color: ghostwhite;
-    border-radius: 16px;
-}

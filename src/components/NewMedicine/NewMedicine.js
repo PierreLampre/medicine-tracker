@@ -7,6 +7,12 @@ const NewMedicine = (props) => {
     const [newPill, setNewPill] = useState("");
     const [pillInterval, setPillInterval] = useState(0);
 
+    function sendInfoClearInputs() {
+        props.passedFunc(newPill, pillInterval);
+        document.getElementById("text").value="";
+        document.getElementById("number").value="";
+    }
+
     return (
         <div className="new-medicine-container">
             <div className="new-med-box">
@@ -14,12 +20,14 @@ const NewMedicine = (props) => {
 
                 <input 
                     type="text"
+                    id="text"
                     onChange={(e) => setNewPill(e.target.value)} 
                 />
                 <p>
                     I take this medicine every
                     <input 
                     type="number" 
+                    id="number"
                     onChange={(e) => setPillInterval(e.target.value)} 
                     /> 
                     hours.
@@ -27,7 +35,7 @@ const NewMedicine = (props) => {
                 <button 
                     className="add-medicine"
                     onClick={() => {
-                        props.passedFunc(newPill, pillInterval)
+                        sendInfoClearInputs()
                     }}
                     >
                         Add To Pill Box

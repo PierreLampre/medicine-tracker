@@ -21,7 +21,7 @@ const Views = () => {
         });
     }
 
-    if (pill.name !== "" && pill.interval !== "0") {
+    if (pill.name !== "" && pill.interval !== 0) {
         setPillBox([...pillBox, pill])
         setPill({name: "", interval: 0})
     } 
