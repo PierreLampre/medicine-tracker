@@ -4,7 +4,11 @@ import "./pill.css"
 
 const Pill = (props) => {
     return (
-        <Link className="link" to="/edit-medicine">
+        <Link 
+            className="link" 
+            to="/edit-medicine"
+            onClick={() => props.handlePillIndexSetter(props.showkey)}
+        >
             <div 
                 className="pill" 
                 name={props.name} 

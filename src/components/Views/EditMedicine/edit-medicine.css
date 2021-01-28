@@ -13,12 +13,14 @@
 }
 
 .center {
-    grid-column: 4 / 8;
+    grid-column: 2 / 10;
     grid-row: 2 / 5;
+    display: grid;
+    justify-items: center;
 }
 
 .edit-button-box {
-    grid-column: 4 / 8;
+    grid-column: 2 / 10;
     grid-row: 6 / 7;
     width: 100%;
     display: flex;

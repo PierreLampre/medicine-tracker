@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import "./setter.css";
 import Pill from "../Pill/Pill"
 
 const Setter = (props) => {
+
+    const [pillIndex, setPillIndex] = useState(null);
+
+    function handlePillIndexSetter(index) {
+        setPillIndex(index)
+    }
+
+    useEffect(() => {
+        props.handlePillIndexViews(pillIndex);
+    }, [props, pillIndex]);
+
     return (
 
             <div className="setter">
@@ -20,6 +31,7 @@ const Setter = (props) => {
                             int={pill.interval} 
                             key={props.pillBox.indexOf(pill)} 
                             showkey={props.pillBox.indexOf(pill)}
+                            handlePillIndexSetter={handlePillIndexSetter}
                         />
                     )) : null}
                 </div>

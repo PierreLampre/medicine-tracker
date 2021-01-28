@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Setter from "../Setter/Setter"
 import Notepad from "./Notepad/Notepad"
@@ -14,7 +14,7 @@ const Views = () => {
     }); 
    
     const [pillBox, setPillBox] = useState([]);
-    const [pillToEdit, setPillToEdit] = useState(null);
+    const [pillIndex, setPillIndex] = useState(null);
 
     //sets pill to be loaded into pillBox
     function handleSetPill(name, interval) {
@@ -31,12 +31,17 @@ const Views = () => {
         setPill({name: "", interval: 0})
     }
 
-    useEffect(() => console.log(pillBox), [pillBox]);
+    function handlePillIndexViews(index) {
+        setPillIndex(index)
+    }
 
     return (
         <div className="views">
             <BrowserRouter>
-                <Setter pillBox={pillBox}/>
+                <Setter 
+                    pillBox={pillBox} 
+                    handlePillIndexViews={handlePillIndexViews}
+                />
                 <Switch>
                     <Route exact path="/">
                         <Notepad />
@@ -49,7 +54,7 @@ const Views = () => {
                 </Switch>
                 <Switch>
                     <Route path="/edit-medicine"> 
-                        <EditMedicine pillBox={pillBox}/>
+                        <EditMedicine pillBox={pillBox} pillIndex={pillIndex}/>
                     </Route>
                 </Switch>
             </BrowserRouter>
