@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Setter from "../Setter/Setter"
 import Notepad from "./Notepad/Notepad"
@@ -13,8 +13,8 @@ const Views = () => {
     const [pill, setPill] = useState({
         name: "",
         interval: 0
-    }); 
-   
+    });
+
     const [pillBox, setPillBox] = useState([]);
     const [pillIndex, setPillIndex] = useState(null);
     const [rowArray, setRowArray] = useState([
@@ -26,6 +26,16 @@ const Views = () => {
         <SpacerRow />,
         <SpacerRow />
     ]);
+
+        
+    useEffect(() => {
+        let savedPillBox = localStorage.getItem("pillBox");
+
+        if(savedPillBox !== null) {
+            let parsedPillBox = JSON.parse(savedPillBox)
+            setPillBox(parsedPillBox);
+        }
+    }, [])
 
     //sets pill to be loaded into pillBox
     function handleSetPill(name, interval) {
@@ -60,6 +70,17 @@ const Views = () => {
         console.log(rowArray);
 
     }
+
+    useEffect(() => {
+
+        if(pillBox.length > 0) {
+            let stringifiedPillBox = JSON.stringify(pillBox);
+            localStorage.setItem("pillBox", stringifiedPillBox);
+        } else {
+            console.log("Actually did the thing correctly");
+        }
+
+    }, [pillBox])
 
     return (
         <div className="views">
