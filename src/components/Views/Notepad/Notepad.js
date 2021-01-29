@@ -1,7 +1,11 @@
 import React from 'react';
+import Row from "./Row/Row"
 import "./notepad.css";
 
-const Notepad = () => {
+const Notepad = (props) => {
+
+
+
     return (
 
             <div className="notepad">
@@ -14,62 +18,19 @@ const Notepad = () => {
                             <span className="hole"></span>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry">Here is a sentence</div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
-                    <div className="row">
-                        <div className="left-margin"></div>
-                        <div className="entry"></div>
-                    </div>
+                   <Row />
+                   <Row />
+                   <Row />
+                   <Row />
+                   <Row />
+                   <Row />
+                   <Row />
+                   <div className="row">
+        <div className="row1">
+            <div className="left-margin"></div>
+            <div className="entry1">Hey</div>
+        </div>
+    </div>
                 </div>
             </div>
 

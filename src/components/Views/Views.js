@@ -15,6 +15,7 @@ const Views = () => {
    
     const [pillBox, setPillBox] = useState([]);
     const [pillIndex, setPillIndex] = useState(null);
+    const [timeStampBoolean, setTimeStampBoolean] = useState(false);
 
     //sets pill to be loaded into pillBox
     function handleSetPill(name, interval) {
@@ -33,6 +34,14 @@ const Views = () => {
 
     function handlePillIndexViews(index) {
         setPillIndex(index)
+    }
+
+    function toggleTimeStampBoolean() {
+        if(timeStampBoolean) {
+            setTimeStampBoolean(false);
+        } else {
+            setTimeStampBoolean(true);
+         }
     }
 
     return (
