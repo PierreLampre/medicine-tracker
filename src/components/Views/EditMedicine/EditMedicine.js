@@ -17,7 +17,11 @@ const EditMedicine = (props) => {
             <h1>No Pill Selected</h1> }
            </div>
            <div className="edit-button-box">
-               <button className="edit-button">Take Medicine</button>
+               <button 
+                    className="edit-button"
+                    onClick={() => props.pushAndPopRowArray()}
+                >
+                    Take Medicine</button>
                <button className="edit-button">Remove Medicine</button>
            </div>
            <Link to="/" className="go-back">

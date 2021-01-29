@@ -4,6 +4,8 @@ import Setter from "../Setter/Setter"
 import Notepad from "./Notepad/Notepad"
 import NewMedicine from "./NewMedicine/NewMedicine"
 import EditMedicine from "./EditMedicine/EditMedicine"
+import SpacerRow from "./Notepad/Row/SpacerRow"
+import Row from "./Notepad/Row/Row"
 import "./views.css"
 
 const Views = () => {
@@ -15,7 +17,15 @@ const Views = () => {
    
     const [pillBox, setPillBox] = useState([]);
     const [pillIndex, setPillIndex] = useState(null);
-    const [timeStampBoolean, setTimeStampBoolean] = useState(false);
+    const [rowArray, setRowArray] = useState([
+        <SpacerRow />,
+        <SpacerRow />,
+        <SpacerRow />,
+        <SpacerRow />,
+        <SpacerRow />,
+        <SpacerRow />,
+        <SpacerRow />
+    ]);
 
     //sets pill to be loaded into pillBox
     function handleSetPill(name, interval) {
@@ -36,12 +46,19 @@ const Views = () => {
         setPillIndex(index)
     }
 
-    function toggleTimeStampBoolean() {
-        if(timeStampBoolean) {
-            setTimeStampBoolean(false);
-        } else {
-            setTimeStampBoolean(true);
-         }
+    function pushAndPopRowArray() {
+        
+        console.log(pillIndex)
+        rowArray.unshift(
+        <Row 
+            name={pillBox[pillIndex].name}
+            int={pillBox[pillIndex].interval}
+        />
+        );
+
+        rowArray.pop();
+        console.log(rowArray);
+
     }
 
     return (
@@ -53,7 +70,10 @@ const Views = () => {
                 />
                 <Switch>
                     <Route exact path="/">
-                        <Notepad />
+                        <Notepad
+                            rowArray={rowArray} 
+                            pillBox={pillBox}
+                        />
                     </Route>
                 </Switch>
                 <Switch>
@@ -63,7 +83,11 @@ const Views = () => {
                 </Switch>
                 <Switch>
                     <Route path="/edit-medicine"> 
-                        <EditMedicine pillBox={pillBox} pillIndex={pillIndex}/>
+                        <EditMedicine 
+                            pillBox={pillBox}
+                            pillIndex={pillIndex}
+                            pushAndPopRowArray={pushAndPopRowArray}
+                        />
                     </Route>
                 </Switch>
             </BrowserRouter>

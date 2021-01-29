@@ -1,5 +1,4 @@
 import React from 'react';
-import Row from "./Row/Row"
 import "./notepad.css";
 
 const Notepad = (props) => {
@@ -18,19 +17,13 @@ const Notepad = (props) => {
                             <span className="hole"></span>
                         </div>
                     </div>
-                   <Row />
-                   <Row />
-                   <Row />
-                   <Row />
-                   <Row />
-                   <Row />
-                   <Row />
+                 {props.rowArray.map(row=>row)}
                    <div className="row">
-        <div className="row1">
-            <div className="left-margin"></div>
-            <div className="entry1">Hey</div>
-        </div>
-    </div>
+                        <div className="row1">
+                            <div className="left-margin"></div>
+                            <div className="entry1"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
