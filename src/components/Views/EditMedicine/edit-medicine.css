@@ -35,7 +35,21 @@
     cursor: pointer;
 }
 
+.disabled{
+    padding: 9px;
+    background: slategrey;
+    color: ghostwhite;
+    border-radius: 8px;
+    cursor: not-allowed;
+}
+
 .go-back {
     grid-column: 4 / 8;
     grid-row: 7 / 8;
+}
+
+.post-notification{
+    color: green;
+    visibility: hidden;
+    transition: all ease 2s;
 }

@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { BrowserRouter, Switch, Route } from "react-router-dom"
-import Setter from "../Setter/Setter"
-import Notepad from "./Notepad/Notepad"
-import NewMedicine from "./NewMedicine/NewMedicine"
-import EditMedicine from "./EditMedicine/EditMedicine"
-import SpacerRow from "./Notepad/Row/SpacerRow"
-import Row from "./Notepad/Row/Row"
-import "./views.css"
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Setter from "../Setter/Setter";
+import Notepad from "./Notepad/Notepad";
+import NewMedicine from "./NewMedicine/NewMedicine";
+import EditMedicine from "./EditMedicine/EditMedicine";
+import moment from "moment";
+import "./views.css";
 
 const Views = () => {
 
@@ -17,23 +16,25 @@ const Views = () => {
 
     const [pillBox, setPillBox] = useState([]);
     const [pillIndex, setPillIndex] = useState(null);
-    const [rowArray, setRowArray] = useState([
-        <SpacerRow />,
-        <SpacerRow />,
-        <SpacerRow />,
-        <SpacerRow />,
-        <SpacerRow />,
-        <SpacerRow />,
-        <SpacerRow />
-    ]);
+    const [notepadStrings, setNotepadStrings] = useState([]);
+    const [localStorageBool, setLocalStorageBool] = useState(false);
 
-        
+    // gets pillBox from local storage    
     useEffect(() => {
         let savedPillBox = localStorage.getItem("pillBox");
 
-        if(savedPillBox !== null) {
+        if (savedPillBox !== null) {
             let parsedPillBox = JSON.parse(savedPillBox)
             setPillBox(parsedPillBox);
+        }
+    }, [])
+
+    useEffect(() => {
+        let savedNotepadStrings = localStorage.getItem("notepadStrings");
+
+        if (savedNotepadStrings !== null) {
+            let parsedNotepadStrings = JSON.parse(savedNotepadStrings)
+            setNotepadStrings(parsedNotepadStrings);
         }
     }, [])
 
@@ -49,65 +50,83 @@ const Views = () => {
     //once a pill is added, the values are reset to initial state
     if (pill.name !== "" && pill.interval !== 0) {
         setPillBox([...pillBox, pill])
-        setPill({name: "", interval: 0})
+        setPill({ name: "", interval: 0 })
     }
 
     function handlePillIndexViews(index) {
         setPillIndex(index)
     }
 
-    function pushAndPopRowArray() {
-        
-        console.log(pillIndex)
-        rowArray.unshift(
-        <Row 
-            name={pillBox[pillIndex].name}
-            int={pillBox[pillIndex].interval}
-        />
-        );
+    function pushToNotepadStrings() {
 
-        rowArray.pop();
-        console.log(rowArray);
+        let timeStamp = moment()
+            .format("LT")
+            .toString()
+            .toLocaleLowerCase()
+            .replace(/\s/g, "");
+
+        let addedTimeStamp = moment().add(pillBox[pillIndex].interval, "h")
+            .format("LT")
+            .toString()
+            .toLocaleLowerCase()
+            .replace(/\s/g, "");
+
+        notepadStrings.push({
+            name: pillBox[pillIndex].name,
+            int: pillBox[pillIndex].interval,
+            timeStamp: timeStamp,
+            addedTimeStamp: addedTimeStamp
+        });
+
+        setLocalStorageBool(true);
 
     }
 
+    //saves pillBox to localStorage
     useEffect(() => {
 
-        if(pillBox.length > 0) {
+        if (pillBox.length > 0) {
             let stringifiedPillBox = JSON.stringify(pillBox);
             localStorage.setItem("pillBox", stringifiedPillBox);
-        } else {
-            console.log("Actually did the thing correctly");
         }
 
     }, [pillBox])
 
+    useEffect(() => {
+        if (localStorageBool) {
+            let stringifiedNotepadStrings = JSON.stringify(notepadStrings);
+            localStorage.setItem("notepadStrings", stringifiedNotepadStrings);
+            setLocalStorageBool(false);
+        }
+
+    }, [notepadStrings, localStorageBool])
+
+
     return (
         <div className="views">
             <BrowserRouter>
-                <Setter 
-                    pillBox={pillBox} 
+                <Setter
+                    pillBox={pillBox}
                     handlePillIndexViews={handlePillIndexViews}
                 />
                 <Switch>
                     <Route exact path="/">
                         <Notepad
-                            rowArray={rowArray} 
-                            pillBox={pillBox}
+                            notepadStrings={notepadStrings}
                         />
                     </Route>
                 </Switch>
                 <Switch>
-                    <Route path="/new-medicine"> 
-                        <NewMedicine pill={pill} passedFunc={handleSetPill}/>
+                    <Route path="/new-medicine">
+                        <NewMedicine pill={pill} passedFunc={handleSetPill} />
                     </Route>
                 </Switch>
                 <Switch>
-                    <Route path="/edit-medicine"> 
-                        <EditMedicine 
+                    <Route path="/edit-medicine">
+                        <EditMedicine
                             pillBox={pillBox}
                             pillIndex={pillIndex}
-                            pushAndPopRowArray={pushAndPopRowArray}
+                            pushToNotepadStrings={pushToNotepadStrings}
                         />
                     </Route>
                 </Switch>

@@ -4,28 +4,51 @@ import "./edit-medicine.css"
 
 const EditMedicine = (props) => {
 
+    function handleTakeMedicine() {
+        let notification = document.getElementById("hidden-note");
+        props.pushToNotepadStrings();
+        notification.style.visibility = "visible";
+        setTimeout(function () { (notification.style.visibility = "hidden"); }, 3000);
+    }
+
     return (
         <div className="edit-medicine-container">
-           <div className="center">
-            {props.pillIndex !== null 
-            ?
-            <>
-            <h1>{props.pillBox[props.pillIndex].name}</h1>
-            <p>You take {props.pillBox[props.pillIndex].name} every {props.pillBox[props.pillIndex].interval} hours</p>
-            </>
-            :
-            <h1>No Pill Selected</h1> }
-           </div>
-           <div className="edit-button-box">
-               <button 
-                    className="edit-button"
-                    onClick={() => props.pushAndPopRowArray()}
-                >
-                    Take Medicine</button>
-               <button className="edit-button">Remove Medicine</button>
-           </div>
-           <Link to="/" className="go-back">
-            Go Back To Notepad 
+            <div className="center">
+                {props.pillIndex !== null
+                    ?
+                    <>
+                        <h1>{props.pillBox[props.pillIndex].name}</h1>
+                        <p>You take {props.pillBox[props.pillIndex].name} every {props.pillBox[props.pillIndex].interval} hours</p>
+                        <h3 id="hidden-note" className="post-notification">You took {props.pillBox[props.pillIndex].name}</h3>
+                    </>
+                    :
+                    <>
+                        <h1>No Pill Selected</h1>
+                        <h3>Please select a pill.</h3>
+                    </>
+                }
+            </div>
+            {props.pillIndex !== null
+                ?
+                <div className="edit-button-box">
+                    <button
+                        className="edit-button"
+                        onClick={() => handleTakeMedicine()}
+                    >
+                        Take Medicine</button>
+                    <button className="edit-button">Remove Medicine</button>
+                </div>
+                :
+                <div className="edit-button-box">
+                    <button
+                        className="edit-button disabled"
+                    >
+                        Take Medicine</button>
+                    <button className="edit-button disabled">Remove Medicine</button>
+                </div>
+            }
+            <Link to="/" className="go-back">
+                Go Back To Notepad
            </Link>
         </div>
     )
