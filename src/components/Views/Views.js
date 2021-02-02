@@ -19,7 +19,7 @@ const Views = () => {
     const [notepadStrings, setNotepadStrings] = useState([]);
     const [localStorageBool, setLocalStorageBool] = useState(false);
 
-    // gets pillBox from local storage    
+    // gets pillBox & notepadStrings from local storage    
     useEffect(() => {
         let savedPillBox = localStorage.getItem("pillBox");
 
@@ -55,15 +55,12 @@ const Views = () => {
 
     function handlePillIndexViews(index) {
         setPillIndex(index);
-        console.log(pillIndex);
     }
 
+    //removes pill from pillBox and updates localStorage
+    // then pulls new LS into app
     function removePillFromPillBox(index) {
         pillBox.splice(index, 1);
-        console.log("pillBox is...")
-        console.log(pillBox);
-        console.log("specific index is...")
-        console.log(pillBox[pillIndex]);
         let stringifiedPillBox = JSON.stringify(pillBox);
         localStorage.setItem("pillBox", stringifiedPillBox);
         let savedPillBox = localStorage.getItem("pillBox");
@@ -71,6 +68,18 @@ const Views = () => {
         if (savedPillBox !== null) {
             let parsedPillBox = JSON.parse(savedPillBox)
             setPillBox(parsedPillBox);
+        }
+    }
+
+    function removeNPStringFromNotepadStrings(name, timestamp) {
+        console.log("name: " + name)
+        console.log("timestamp: " + timestamp)
+        for (let i = 0; i < notepadStrings.length; i++) {
+
+            if (notepadStrings[i].name === name && notepadStrings[i].timeStamp === timestamp) {
+                notepadStrings.splice(i, 1);
+                setLocalStorageBool(true);
+            }
         }
     }
 
@@ -99,7 +108,7 @@ const Views = () => {
 
     }
 
-    //saves pillBox to localStorage
+    //saves pillBox & notepadStrings to localStorage
     useEffect(() => {
 
         if (pillBox.length > 0) {
@@ -130,6 +139,7 @@ const Views = () => {
                     <Route exact path="/">
                         <Notepad
                             notepadStrings={notepadStrings}
+                            removeNPStringFromNotepadStrings={removeNPStringFromNotepadStrings}
                         />
                     </Route>
                 </Switch>

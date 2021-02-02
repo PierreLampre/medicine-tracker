@@ -8,7 +8,13 @@ const Row = (props) => {
                 ?
                 <>
                     <div className="row1">
-                        <div className="left-margin"></div>
+                        <div className="left-margin">
+                            <button
+                                className="clear"
+                                onClick={() => props.removeEntry(props.notepadStrings.name, props.notepadStrings.timeStamp)}
+                            >
+                                &#10005;</button>
+                        </div>
                         <div className="entry1">You took {props.notepadStrings.name} at {props.notepadStrings.timeStamp}</div>
                     </div>
                     <div className="row2">
