@@ -14,7 +14,7 @@ const EditMedicine = (props) => {
     return (
         <div className="edit-medicine-container">
             <div className="center">
-                {props.pillIndex !== null
+                {props.pillIndex !== null && props.pillBox.length !== 0 && props.pillBox[props.pillIndex] !== undefined
                     ?
                     <>
                         <h1>{props.pillBox[props.pillIndex].name}</h1>
@@ -28,7 +28,7 @@ const EditMedicine = (props) => {
                     </>
                 }
             </div>
-            {props.pillIndex !== null
+            { props.pillIndex !== null
                 ?
                 <div className="edit-button-box">
                     <button
@@ -36,7 +36,11 @@ const EditMedicine = (props) => {
                         onClick={() => handleTakeMedicine()}
                     >
                         Take Medicine</button>
-                    <button className="edit-button">Remove Medicine</button>
+                    <button
+                        className="edit-button"
+                        onClick={() => props.removePillFromPillBox(props.pillIndex)}
+                    >
+                        Remove Medicine</button>
                 </div>
                 :
                 <div className="edit-button-box">

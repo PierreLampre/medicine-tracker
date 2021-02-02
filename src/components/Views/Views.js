@@ -54,7 +54,24 @@ const Views = () => {
     }
 
     function handlePillIndexViews(index) {
-        setPillIndex(index)
+        setPillIndex(index);
+        console.log(pillIndex);
+    }
+
+    function removePillFromPillBox(index) {
+        pillBox.splice(index, 1);
+        console.log("pillBox is...")
+        console.log(pillBox);
+        console.log("specific index is...")
+        console.log(pillBox[pillIndex]);
+        let stringifiedPillBox = JSON.stringify(pillBox);
+        localStorage.setItem("pillBox", stringifiedPillBox);
+        let savedPillBox = localStorage.getItem("pillBox");
+
+        if (savedPillBox !== null) {
+            let parsedPillBox = JSON.parse(savedPillBox)
+            setPillBox(parsedPillBox);
+        }
     }
 
     function pushToNotepadStrings() {
@@ -127,6 +144,7 @@ const Views = () => {
                             pillBox={pillBox}
                             pillIndex={pillIndex}
                             pushToNotepadStrings={pushToNotepadStrings}
+                            removePillFromPillBox={removePillFromPillBox}
                         />
                     </Route>
                 </Switch>
