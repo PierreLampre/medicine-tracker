@@ -89,7 +89,8 @@ const Views = () => {
             .format("LT")
             .toString()
             .toLocaleLowerCase()
-            .replace(/\s/g, "");
+            .replace(/\s/g, "") + " on " + moment().format("MMM").toString() + " " +
+            moment().format("D").toString();
 
         let addedTimeStamp = moment().add(pillBox[pillIndex].interval, "h")
             .format("LT")
@@ -126,7 +127,6 @@ const Views = () => {
         }
 
     }, [notepadStrings, localStorageBool])
-
 
     return (
         <div className="views">

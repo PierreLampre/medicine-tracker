@@ -24,12 +24,30 @@ const Notepad = (props) => {
                     notepadStrings={props.notepadStrings[0]}
                     removeEntry={propDrillRemoveEntry}
                 />
-                <Row notepadStrings={props.notepadStrings[1]} />
-                <Row notepadStrings={props.notepadStrings[2]} />
-                <Row notepadStrings={props.notepadStrings[3]} />
-                <Row notepadStrings={props.notepadStrings[4]} />
-                <Row notepadStrings={props.notepadStrings[5]} />
-                <Row notepadStrings={props.notepadStrings[6]} />
+                <Row
+                    notepadStrings={props.notepadStrings[1]}
+                    removeEntry={propDrillRemoveEntry}
+                />
+                <Row
+                    notepadStrings={props.notepadStrings[2]}
+                    removeEntry={propDrillRemoveEntry}
+                />
+                <Row
+                    notepadStrings={props.notepadStrings[3]}
+                    removeEntry={propDrillRemoveEntry}
+                />
+                <Row
+                    notepadStrings={props.notepadStrings[4]}
+                    removeEntry={propDrillRemoveEntry}
+                />
+                <Row
+                    notepadStrings={props.notepadStrings[5]}
+                    removeEntry={propDrillRemoveEntry}
+                />
+                <Row
+                    notepadStrings={props.notepadStrings[6]}
+                    removeEntry={propDrillRemoveEntry}
+                />
                 <div className="row">
                     <div className="row1">
                         <div className="left-margin"></div>

@@ -50,6 +50,6 @@
 
 .post-notification{
     color: green;
-    visibility: hidden;
-    transition: all ease 2s;
+    opacity: 0;
+    transition: all ease .75s;
 }

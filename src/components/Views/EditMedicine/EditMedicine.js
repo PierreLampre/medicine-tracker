@@ -7,8 +7,8 @@ const EditMedicine = (props) => {
     function handleTakeMedicine() {
         let notification = document.getElementById("hidden-note");
         props.pushToNotepadStrings();
-        notification.style.visibility = "visible";
-        setTimeout(function () { (notification.style.visibility = "hidden"); }, 3000);
+        notification.style.opacity = 1;
+        setTimeout(function () { (notification.style.opacity = 0); }, 750);
     }
 
     return (
