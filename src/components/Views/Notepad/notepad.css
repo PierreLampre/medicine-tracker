@@ -76,7 +76,7 @@
     display: grid;
     grid-template-columns: 30px auto;
     font-family: 'Satisfy', cursive;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .row1 {
