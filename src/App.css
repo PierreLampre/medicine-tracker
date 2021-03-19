@@ -10,6 +10,7 @@ body {
 
 .App{
   height: 100vh;
+  min-height: 720px;
   width: 100vw;
   display: grid;
   align-items: center;
@@ -24,4 +25,6 @@ body {
   color: honeydew;
   grid-row: 1 / 2;
   grid-column: 6 / 9;
+  min-height: 35px;
+  margin: 30px 0;
 }
