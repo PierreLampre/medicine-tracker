@@ -109,3 +109,17 @@
 .entry1, .entry2{
     margin-left: 10px;
 }
+
+@media screen and (min-width: 500px) {
+    .row1, .row2 {
+        font-size: 20px;
+    }
+    
+  }
+
+  @media screen and (min-width: 760px) {
+    .row1, .row2 {
+        font-size: 24px;
+    }
+    
+  }
