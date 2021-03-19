@@ -17,6 +17,7 @@
 .button{
     width: 120px;
     border-radius: 8px;
+    padding: 6px;
 }
 
 .button:hover {
